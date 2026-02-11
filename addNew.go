@@ -23,6 +23,18 @@ func newTransaction() {
 	newNote := addNote()
 	newDate := addDate()
 
+	transaction := Transaction{
+		ID:       nextID,
+		Type:     newType,
+		Amount:   newAmount,
+		Category: newCategory,
+		Note:     newNote,
+		Date:     newDate,
+	}
+
+	transactions = append(transactions, transaction)
+	nextID++
+
 	fmt.Printf("\nТранзакция добавлена:\nТип: %s\nСумма: %.2f\nКатегория: %s\nОписание: %s\nДата: %s\n",
 		newType, newAmount, newCategory, newNote, newDate)
 
@@ -91,7 +103,5 @@ func addNote() string {
 }
 
 func addDate() string {
-	var newDate string
-	newDate = time.Now().Format("02.01.2006")
-	return newDate
+	return time.Now().Format("02.01.2006")
 }
